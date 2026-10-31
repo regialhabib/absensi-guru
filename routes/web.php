@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 Route::get('/', function () {
     $user = request()->user();
 
     if (! $user) {
-        return redirect()->route('login');
+        return Inertia::render('welcome');
     }
 
     return redirect()->route($user->isAdmin() ? 'admin.dashboard' : 'dashboard');
