@@ -51,6 +51,18 @@ class AccessControlTest extends TestCase
             ->assertOk();
     }
 
+    public function test_admin_cannot_use_teacher_only_routes(): void
+    {
+        $admin = User::factory()->admin()->create();
+
+        $this->actingAs($admin)->get(route('attendance.show'))->assertForbidden();
+        $this->actingAs($admin)->post(route('attendance.check-in'))->assertForbidden();
+        $this->actingAs($admin)->post(route('attendance.check-out'))->assertForbidden();
+        $this->actingAs($admin)->get(route('attendance.history'))->assertForbidden();
+        $this->actingAs($admin)->get(route('leaves.index'))->assertForbidden();
+        $this->actingAs($admin)->post(route('leaves.store'))->assertForbidden();
+    }
+
     public function test_user_deactivated_mid_session_is_logged_out(): void
     {
         $user = User::factory()->guru()->create();

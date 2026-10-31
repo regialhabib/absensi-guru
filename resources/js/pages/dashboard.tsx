@@ -1,7 +1,8 @@
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { formatTime } from '@/lib/datetime';
 import { dashboard } from '@/routes';
 import { show } from '@/routes/attendance';
 import { DAY_STATUS_LABELS } from '@/types/absensi';
@@ -27,18 +28,8 @@ const SUMMARY_ITEMS: { key: keyof MonthlySummary; label: string }[] = [
     { key: 'alpa', label: 'Alpa' },
 ];
 
-function formatTime(iso: string | null): string {
-    if (iso === null) {
-        return '-';
-    }
-
-    return new Date(iso).toLocaleTimeString('id-ID', {
-        hour: '2-digit',
-        minute: '2-digit',
-    });
-}
-
 export default function Dashboard({ today, month, summary }: Props) {
+    const { timezone } = usePage().props;
     const dateLabel = new Date(`${today.date}T00:00:00`).toLocaleDateString(
         'id-ID',
         { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' },
@@ -72,7 +63,7 @@ export default function Dashboard({ today, month, summary }: Props) {
                                     Absen masuk
                                 </dt>
                                 <dd className="text-2xl font-semibold">
-                                    {formatTime(today.check_in_at)}
+                                    {formatTime(today.check_in_at, timezone)}
                                 </dd>
                             </div>
                             <div>
@@ -80,7 +71,7 @@ export default function Dashboard({ today, month, summary }: Props) {
                                     Absen pulang
                                 </dt>
                                 <dd className="text-2xl font-semibold">
-                                    {formatTime(today.check_out_at)}
+                                    {formatTime(today.check_out_at, timezone)}
                                 </dd>
                             </div>
                         </dl>

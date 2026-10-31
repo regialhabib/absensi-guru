@@ -36,7 +36,7 @@ type Props = {
 type Review = { leave: LeaveRequest; action: 'approve' | 'reject' };
 
 function formatDate(value: string): string {
-    return new Date(value).toLocaleDateString('id-ID', {
+    return new Date(`${value}T00:00:00`).toLocaleDateString('id-ID', {
         day: 'numeric',
         month: 'short',
         year: 'numeric',

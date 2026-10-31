@@ -1,6 +1,7 @@
-import { Head, router } from '@inertiajs/react';
+import { Head, router, usePage } from '@inertiajs/react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { formatTime } from '@/lib/datetime';
 import { history } from '@/routes/attendance';
 import { DAY_STATUS_LABELS } from '@/types/absensi';
 import type { DayStatus, MonthlySummary } from '@/types/absensi';
@@ -37,17 +38,6 @@ const SUMMARY_ITEMS: { key: keyof MonthlySummary; label: string }[] = [
 const selectClass =
     'h-10 rounded-md border border-input bg-background px-3 text-sm shadow-xs focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 outline-none';
 
-function formatTime(iso: string | null): string {
-    if (iso === null) {
-        return '-';
-    }
-
-    return new Date(iso).toLocaleTimeString('id-ID', {
-        hour: '2-digit',
-        minute: '2-digit',
-    });
-}
-
 function statusVariant(status: DayStatus) {
     if (status === 'alpa') {
         return 'destructive' as const;
@@ -66,6 +56,7 @@ export default function AttendanceHistory({
     days,
     summary,
 }: Props) {
+    const { timezone } = usePage().props;
     const currentYear = new Date().getFullYear();
     const years = Array.from(
         new Set([year, currentYear - 1, currentYear, currentYear + 1]),
@@ -157,8 +148,15 @@ export default function AttendanceHistory({
                                         </div>
                                         <div className="min-w-0 flex-1 text-sm">
                                             <div>
-                                                {formatTime(day.check_in_at)} -{' '}
-                                                {formatTime(day.check_out_at)}
+                                                {formatTime(
+                                                    day.check_in_at,
+                                                    timezone,
+                                                )}{' '}
+                                                -{' '}
+                                                {formatTime(
+                                                    day.check_out_at,
+                                                    timezone,
+                                                )}
                                             </div>
                                             {(day.late_minutes > 0 ||
                                                 day.early_leave_minutes >
