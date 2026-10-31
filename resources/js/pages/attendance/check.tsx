@@ -1,4 +1,4 @@
-import { Head, useForm } from '@inertiajs/react';
+import { Head, useForm, usePage } from '@inertiajs/react';
 import { CheckCircle2, ShieldCheck } from 'lucide-react';
 import LocationStatus from '@/components/attendance/location-status';
 import SelfieCapture from '@/components/attendance/selfie-capture';
@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/card';
 import { Spinner } from '@/components/ui/spinner';
 import { distanceInMeters, useGeolocation } from '@/hooks/use-geolocation';
+import { formatTime } from '@/lib/datetime';
 import { checkIn, checkOut, show } from '@/routes/attendance';
 import { DAY_STATUS_LABELS } from '@/types/absensi';
 import type { AttendanceStatus, DayStatus } from '@/types/absensi';
@@ -49,14 +50,6 @@ type FormErrors = Partial<
     Record<'location' | 'attendance' | 'photo', string | undefined>
 >;
 
-function formatTime(iso: string): string {
-    return new Date(iso).toLocaleTimeString('id-ID', {
-        hour: '2-digit',
-        minute: '2-digit',
-        timeZone: 'Asia/Jakarta',
-    });
-}
-
 function formatDate(date: string): string {
     return new Date(`${date}T00:00:00Z`).toLocaleDateString('id-ID', {
         weekday: 'long',
@@ -75,6 +68,7 @@ export default function AttendanceCheck({
     canCheckOut,
     blockedReason,
 }: Props) {
+    const { timezone } = usePage().props;
     const canAct = canCheckIn || canCheckOut;
     const { coords, error: locationError } = useGeolocation();
     const form = useForm<{
@@ -166,7 +160,7 @@ export default function AttendanceCheck({
                             <p>
                                 Masuk:{' '}
                                 <strong>
-                                    {formatTime(attendance.checkInAt)}
+                                    {formatTime(attendance.checkInAt, timezone)}
                                 </strong>
                                 {attendance.lateMinutes > 0 &&
                                     ` (terlambat ${attendance.lateMinutes} menit)`}
@@ -175,7 +169,10 @@ export default function AttendanceCheck({
                                 Pulang:{' '}
                                 <strong>
                                     {attendance.checkOutAt
-                                        ? formatTime(attendance.checkOutAt)
+                                        ? formatTime(
+                                              attendance.checkOutAt,
+                                              timezone,
+                                          )
                                         : 'Belum absen pulang'}
                                 </strong>
                                 {attendance.earlyLeaveMinutes > 0 &&

@@ -1,4 +1,4 @@
-import { Head, router } from '@inertiajs/react';
+import { Head, router, usePage } from '@inertiajs/react';
 import { Camera, MapPin, TriangleAlert } from 'lucide-react';
 import { useState } from 'react';
 import Pagination from '@/components/admin/pagination';
@@ -20,6 +20,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
+import { formatTime } from '@/lib/datetime';
 import { index } from '@/routes/admin/attendances';
 import { photo } from '@/routes/attendance';
 import type { Attendance, Decimal, Paginated } from '@/types';
@@ -31,15 +32,6 @@ type Props = {
 };
 
 type PhotoView = { attendance: Attendance; type: 'masuk' | 'pulang' };
-
-function formatTime(value: string | null): string {
-    return value
-        ? new Date(value).toLocaleTimeString('id-ID', {
-              hour: '2-digit',
-              minute: '2-digit',
-          })
-        : '-';
-}
 
 function formatNumber(value: Decimal | null): string {
     return value === null ? '-' : Number(value).toFixed(0);
@@ -66,6 +58,7 @@ export default function AttendancesIndex({
     filters,
     teachers,
 }: Props) {
+    const { timezone } = usePage().props;
     const [viewing, setViewing] = useState<PhotoView | null>(null);
 
     function applyFilters(next: Partial<{ date: string; user_id: string }>) {
@@ -174,7 +167,10 @@ export default function AttendancesIndex({
                                         </p>
                                     </td>
                                     <td className="px-3 py-2">
-                                        {formatTime(attendance.check_in_at)}
+                                        {formatTime(
+                                            attendance.check_in_at,
+                                            timezone,
+                                        )}
                                         <div>
                                             <FaceWarning
                                                 detected={
@@ -184,7 +180,10 @@ export default function AttendancesIndex({
                                         </div>
                                     </td>
                                     <td className="px-3 py-2">
-                                        {formatTime(attendance.check_out_at)}
+                                        {formatTime(
+                                            attendance.check_out_at,
+                                            timezone,
+                                        )}
                                         <div>
                                             <FaceWarning
                                                 detected={
