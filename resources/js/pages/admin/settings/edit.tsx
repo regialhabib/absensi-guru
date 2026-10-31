@@ -81,10 +81,10 @@ export default function SettingsEdit({ setting, schedules }: Props) {
 
     return (
         <>
-            <Head title="Pengaturan" />
+            <Head title="Pengaturan Absensi" />
             <form onSubmit={submit} className="max-w-3xl space-y-6 p-4">
                 <Heading
-                    title="Pengaturan"
+                    title="Pengaturan Absensi"
                     description="Lokasi absensi, toleransi, dan jam kerja"
                 />
 
@@ -337,5 +337,5 @@ export default function SettingsEdit({ setting, schedules }: Props) {
 }
 
 SettingsEdit.layout = {
-    breadcrumbs: [{ title: 'Pengaturan', href: edit() }],
+    breadcrumbs: [{ title: 'Pengaturan Absensi', href: edit() }],
 };

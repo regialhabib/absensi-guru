@@ -8,6 +8,7 @@ import {
     MapPin,
     ShieldCheck,
 } from 'lucide-react';
+import AppearanceToggle from '@/components/appearance-toggle';
 import GeofenceRings from '@/components/geofence-rings';
 import { Button } from '@/components/ui/button';
 import { login } from '@/routes';
@@ -115,13 +116,16 @@ export default function Welcome() {
                                     {name}
                                 </span>
                             </div>
-                            <Button
-                                asChild
-                                variant="outline"
-                                className="shrink-0 border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground dark:border-primary-foreground/40 dark:bg-transparent"
-                            >
-                                <Link href={login()}>Masuk</Link>
-                            </Button>
+                            <div className="flex shrink-0 items-center gap-1">
+                                <AppearanceToggle className="text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground dark:hover:bg-primary-foreground/10" />
+                                <Button
+                                    asChild
+                                    variant="outline"
+                                    className="shrink-0 border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground dark:border-primary-foreground/40 dark:bg-transparent"
+                                >
+                                    <Link href={login()}>Masuk</Link>
+                                </Button>
+                            </div>
                         </nav>
 
                         <div className="grid items-center gap-12 pt-10 pb-16 lg:grid-cols-[1.2fr_1fr] lg:pt-16 lg:pb-24">
