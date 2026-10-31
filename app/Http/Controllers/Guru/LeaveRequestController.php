@@ -53,6 +53,8 @@ class LeaveRequestController extends Controller
             $request->file('attachment'),
         );
 
+        Inertia::flash('toast', ['type' => 'success', 'message' => 'Pengajuan izin berhasil dikirim.']);
+
         return to_route('leaves.index');
     }
 
@@ -61,6 +63,8 @@ class LeaveRequestController extends Controller
         Gate::authorize('delete', $leaveRequest);
 
         $service->cancel($leaveRequest);
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => 'Pengajuan izin dibatalkan.']);
 
         return to_route('leaves.index');
     }
