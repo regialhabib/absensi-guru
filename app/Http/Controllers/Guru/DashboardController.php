@@ -3,16 +3,37 @@
 namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
+use App\Services\Attendance\DailyStatusResolver;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class DashboardController extends Controller
 {
-    /**
-     * Placeholder page from the starter kit; wave 2 replaces it with the real guru dashboard.
-     */
-    public function index(): Response
+    public function index(Request $request, DailyStatusResolver $resolver): Response|RedirectResponse
     {
-        return Inertia::render('dashboard');
+        $user = $request->user();
+
+        if ($user->isAdmin()) {
+            return redirect()->route('admin.dashboard');
+        }
+
+        $today = today();
+        $attendance = $user->attendances()->whereDate('date', $today)->first();
+
+        return Inertia::render('dashboard', [
+            'today' => [
+                'date' => $today->toDateString(),
+                'status' => $resolver->resolve($user, $today)->value,
+                'check_in_at' => $attendance?->check_in_at->toIso8601String(),
+                'check_out_at' => $attendance?->check_out_at?->toIso8601String(),
+            ],
+            'month' => [
+                'year' => $today->year,
+                'month' => $today->month,
+            ],
+            'summary' => $resolver->summarize($user, $today->year, $today->month),
+        ]);
     }
 }
