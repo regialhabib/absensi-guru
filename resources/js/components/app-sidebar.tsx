@@ -1,7 +1,7 @@
 import { Link } from '@inertiajs/react';
 import AppLogo from '@/components/app-logo';
 import { NavMain } from '@/components/nav-main';
-import { NavUser } from '@/components/nav-user';
+import { NavLogout } from '@/components/nav-logout';
 import {
     Sidebar,
     SidebarContent,
@@ -36,7 +36,7 @@ export function AppSidebar() {
             </SidebarContent>
 
             <SidebarFooter>
-                <NavUser />
+                <NavLogout />
             </SidebarFooter>
         </Sidebar>
     );
