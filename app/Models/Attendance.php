@@ -45,7 +45,7 @@ class Attendance extends Model
     protected function casts(): array
     {
         return [
-            'date' => 'date',
+            'date' => 'date:Y-m-d',
             'check_in_at' => 'datetime',
             'check_out_at' => 'datetime',
             'check_in_latitude' => 'decimal:7',

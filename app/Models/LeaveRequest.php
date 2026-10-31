@@ -37,8 +37,8 @@ class LeaveRequest extends Model
         return [
             'type' => LeaveType::class,
             'status' => LeaveStatus::class,
-            'start_date' => 'date',
-            'end_date' => 'date',
+            'start_date' => 'date:Y-m-d',
+            'end_date' => 'date:Y-m-d',
             'reviewed_at' => 'datetime',
         ];
     }
