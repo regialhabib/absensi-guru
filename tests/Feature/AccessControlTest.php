@@ -48,7 +48,7 @@ class AccessControlTest extends TestCase
     {
         $this->actingAs(User::factory()->admin()->create())
             ->get(route('admin.dashboard'))
-            ->assertStatus(501);
+            ->assertOk();
     }
 
     public function test_user_deactivated_mid_session_is_logged_out(): void
