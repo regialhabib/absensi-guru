@@ -27,7 +27,7 @@ class AttendanceSubmissionRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'photo' => 'foto selfie',
+            'photo' => 'swafoto',
             'latitude' => 'lintang',
             'longitude' => 'bujur',
             'accuracy' => 'akurasi lokasi',
