@@ -44,7 +44,7 @@ export default function Dashboard({ today, month, summary }: Props) {
 
     return (
         <>
-            <Head title="Dashboard" />
+            <Head title="Dasbor" />
 
             <div className="mx-auto flex w-full max-w-2xl flex-col gap-4 p-4">
                 <Card>
@@ -122,7 +122,7 @@ export default function Dashboard({ today, month, summary }: Props) {
 Dashboard.layout = {
     breadcrumbs: [
         {
-            title: 'Dashboard',
+            title: 'Dasbor',
             href: dashboard(),
         },
     ],

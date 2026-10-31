@@ -124,7 +124,7 @@ export default function SettingsEdit({ setting, schedules }: Props) {
 
                         <div className="grid gap-4 sm:grid-cols-2">
                             <div className="grid gap-2">
-                                <Label htmlFor="latitude">Latitude</Label>
+                                <Label htmlFor="latitude">Garis lintang</Label>
                                 <Input
                                     id="latitude"
                                     inputMode="decimal"
@@ -139,7 +139,7 @@ export default function SettingsEdit({ setting, schedules }: Props) {
                                 <InputError message={errors.latitude} />
                             </div>
                             <div className="grid gap-2">
-                                <Label htmlFor="longitude">Longitude</Label>
+                                <Label htmlFor="longitude">Garis bujur</Label>
                                 <Input
                                     id="longitude"
                                     inputMode="decimal"

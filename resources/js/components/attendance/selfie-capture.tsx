@@ -125,7 +125,7 @@ export default function SelfieCapture({
             <div className="space-y-3">
                 <img
                     src={previewUrl}
-                    alt="Hasil selfie"
+                    alt="Hasil swafoto"
                     className="aspect-[3/4] w-full rounded-lg border bg-muted object-cover"
                 />
                 <Button

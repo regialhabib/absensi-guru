@@ -202,7 +202,7 @@ export default function AttendanceCheck({
                                 {canCheckIn ? 'Absen Masuk' : 'Absen Pulang'}
                             </CardTitle>
                             <CardDescription>
-                                Ambil selfie langsung dari kamera depan.
+                                Ambil swafoto langsung dari kamera depan.
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">
@@ -288,7 +288,7 @@ export default function AttendanceCheck({
 
                             <p className="flex gap-2 text-xs text-muted-foreground">
                                 <ShieldCheck className="size-4 shrink-0" />
-                                Selfie dan lokasi Anda direkam sebagai bukti
+                                Swafoto dan lokasi Anda direkam sebagai bukti
                                 kehadiran sesuai Undang-Undang Pelindungan Data
                                 Pribadi dan hanya dipakai untuk keperluan
                                 absensi.

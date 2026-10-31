@@ -41,10 +41,10 @@ export default function AdminDashboard({
 
     return (
         <>
-            <Head title="Dashboard Admin" />
+            <Head title="Dasbor Admin" />
             <div className="space-y-4 p-4">
                 <Heading
-                    title="Dashboard"
+                    title="Dasbor"
                     description={`${dateLabel} - ${summary.total} guru aktif`}
                 />
 
@@ -88,5 +88,5 @@ export default function AdminDashboard({
 }
 
 AdminDashboard.layout = {
-    breadcrumbs: [{ title: 'Dashboard', href: admin.dashboard() }],
+    breadcrumbs: [{ title: 'Dasbor', href: admin.dashboard() }],
 };

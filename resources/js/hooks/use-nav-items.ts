@@ -22,14 +22,14 @@ import { index as leaves } from '@/routes/leaves';
 import type { NavItem } from '@/types';
 
 const guruNavItems: NavItem[] = [
-    { title: 'Dashboard', href: dashboard(), icon: LayoutGrid },
+    { title: 'Dasbor', href: dashboard(), icon: LayoutGrid },
     { title: 'Absen', href: attendanceShow(), icon: MapPinCheck },
     { title: 'Riwayat', href: history(), icon: History },
     { title: 'Izin', href: leaves(), icon: FileText },
 ];
 
 const adminNavItems: NavItem[] = [
-    { title: 'Dashboard', href: admin.dashboard(), icon: LayoutGrid },
+    { title: 'Dasbor', href: admin.dashboard(), icon: LayoutGrid },
     { title: 'Guru', href: adminTeachers(), icon: Users },
     { title: 'Absensi', href: adminAttendances(), icon: CalendarCheck },
     { title: 'Izin', href: adminLeaves(), icon: ClipboardList },
