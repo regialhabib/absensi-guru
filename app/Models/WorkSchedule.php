@@ -4,7 +4,17 @@ namespace App\Models;
 
 use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
+/**
+ * @property int $id
+ * @property int $day_of_week
+ * @property bool $is_workday
+ * @property string|null $starts_at
+ * @property string|null $ends_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ */
 class WorkSchedule extends Model
 {
     protected $guarded = [];

@@ -3,7 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property float|null $latitude
+ * @property float|null $longitude
+ * @property int $radius_meters
+ * @property int $max_accuracy_meters
+ * @property int $late_tolerance_minutes
+ * @property string $check_in_opens_at
+ * @property string $check_out_closes_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ */
 class SchoolSetting extends Model
 {
     protected $guarded = [];
