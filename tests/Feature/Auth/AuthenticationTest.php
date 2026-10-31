@@ -19,6 +19,12 @@ class AuthenticationTest extends TestCase
         $response->assertOk();
     }
 
+    public function test_passkey_login_is_not_available()
+    {
+        $this->get('/passkeys/login/options')->assertNotFound();
+        $this->post('/passkeys/login')->assertNotFound();
+    }
+
     public function test_users_can_authenticate_using_the_login_screen()
     {
         $user = User::factory()->create();
