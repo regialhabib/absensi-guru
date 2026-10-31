@@ -8,6 +8,7 @@ import {
     MapPin,
     ShieldCheck,
 } from 'lucide-react';
+import GeofenceRings from '@/components/geofence-rings';
 import { Button } from '@/components/ui/button';
 import { login } from '@/routes';
 
@@ -60,7 +61,7 @@ function PhonePreview() {
         >
             <p className="text-sm font-semibold">Absen Masuk</p>
             <p className="text-xs text-muted-foreground">
-                Ambil selfie langsung dari kamera depan.
+                Ambil swafoto langsung dari kamera depan.
             </p>
 
             <div className="mt-4 grid gap-2 text-xs">
@@ -98,21 +99,7 @@ export default function Welcome() {
 
             <div className="min-h-svh bg-background text-foreground">
                 <header className="relative overflow-hidden bg-primary text-primary-foreground dark:[--color-primary-foreground:#ffffff] dark:[--color-primary:#1e7b3a]">
-                    <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute top-1/2 left-1/2 hidden size-[56rem] -translate-y-1/2 lg:block"
-                    >
-                        {[100, 75, 50].map((size) => (
-                            <span
-                                key={size}
-                                style={{
-                                    width: `${size}%`,
-                                    height: `${size}%`,
-                                }}
-                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary-foreground/15"
-                            />
-                        ))}
-                    </div>
+                    <GeofenceRings className="top-1/2 left-1/2 hidden size-[56rem] -translate-y-1/2 lg:block" />
 
                     <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
                         <nav className="flex items-center justify-between gap-4 py-4">

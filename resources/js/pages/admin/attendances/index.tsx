@@ -257,7 +257,7 @@ export default function AttendancesIndex({
                                                     })
                                                 }
                                             >
-                                                <Camera /> Selfie masuk
+                                                <Camera /> Swafoto masuk
                                             </Button>
                                             {attendance.check_out_photo && (
                                                 <Button
@@ -270,7 +270,7 @@ export default function AttendancesIndex({
                                                         })
                                                     }
                                                 >
-                                                    <Camera /> Selfie pulang
+                                                    <Camera /> Swafoto pulang
                                                 </Button>
                                             )}
                                             <Button
@@ -306,7 +306,7 @@ export default function AttendancesIndex({
             >
                 <DialogContent>
                     <DialogTitle>
-                        Selfie {viewing?.type} -{' '}
+                        Swafoto {viewing?.type} -{' '}
                         {viewing?.attendance.user?.name}
                     </DialogTitle>
                     <DialogDescription>
@@ -320,7 +320,7 @@ export default function AttendancesIndex({
                                     type: viewing.type,
                                 }).url
                             }
-                            alt={`Selfie ${viewing.type}`}
+                            alt={`Swafoto ${viewing.type}`}
                             className="max-h-[70vh] w-full rounded-md object-contain"
                         />
                     )}
