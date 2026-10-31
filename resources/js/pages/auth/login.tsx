@@ -1,7 +1,6 @@
 import { Form, Head } from '@inertiajs/react';
 import AuthStatus from '@/components/auth-status';
 import InputError from '@/components/input-error';
-import PasskeyVerify from '@/components/passkey-verify';
 import PasswordInput from '@/components/password-input';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
@@ -93,12 +92,6 @@ export default function Login({ status, canResetPassword }: Props) {
                     </div>
                 )}
             </Form>
-
-            <PasskeyVerify
-                label="Masuk dengan kunci sandi"
-                loadingLabel="Memverifikasi..."
-                separator="Atau"
-            />
         </>
     );
 }

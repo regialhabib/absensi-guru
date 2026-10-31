@@ -1,6 +1,7 @@
 import { Link, usePage } from '@inertiajs/react';
 import { ArrowLeft, Camera, Check, FileBarChart, MapPin } from 'lucide-react';
 import AppLogoIcon from '@/components/app-logo-icon';
+import AppearanceToggle from '@/components/appearance-toggle';
 import GeofenceRings from '@/components/geofence-rings';
 import { home } from '@/routes';
 import type { AuthLayoutProps } from '@/types';
@@ -76,13 +77,16 @@ export default function AuthSplitLayout({
 
                 <div className="flex flex-1 items-center justify-center p-6 md:p-10">
                     <div className="w-full max-w-sm">
-                        <Link
-                            href={home()}
-                            className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
-                        >
-                            <ArrowLeft className="size-4" />
-                            Kembali ke beranda
-                        </Link>
+                        <div className="mb-8 flex items-center justify-between gap-4">
+                            <Link
+                                href={home()}
+                                className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
+                            >
+                                <ArrowLeft className="size-4" />
+                                Kembali ke beranda
+                            </Link>
+                            <AppearanceToggle />
+                        </div>
 
                         <div className="mb-8">
                             <h1 className="text-2xl font-bold tracking-tight">

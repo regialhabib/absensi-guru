@@ -8,6 +8,7 @@ import {
     LayoutGrid,
     MapPinCheck,
     Settings,
+    UserCog,
     Users,
 } from 'lucide-react';
 import { dashboard } from '@/routes';
@@ -19,13 +20,22 @@ import { edit as adminSettings } from '@/routes/admin/settings';
 import { index as adminTeachers } from '@/routes/admin/teachers';
 import { history, show as attendanceShow } from '@/routes/attendance';
 import { index as leaves } from '@/routes/leaves';
+import { edit as accountSettings } from '@/routes/profile';
 import type { NavItem } from '@/types';
+
+const accountNavItem: NavItem = {
+    title: 'Pengaturan Akun',
+    href: accountSettings(),
+    icon: UserCog,
+    activePath: '/settings',
+};
 
 const guruNavItems: NavItem[] = [
     { title: 'Dasbor', href: dashboard(), icon: LayoutGrid },
     { title: 'Absen', href: attendanceShow(), icon: MapPinCheck },
     { title: 'Riwayat', href: history(), icon: History },
     { title: 'Izin', href: leaves(), icon: FileText },
+    accountNavItem,
 ];
 
 const adminNavItems: NavItem[] = [
@@ -34,7 +44,8 @@ const adminNavItems: NavItem[] = [
     { title: 'Absensi', href: adminAttendances(), icon: CalendarCheck },
     { title: 'Izin', href: adminLeaves(), icon: ClipboardList },
     { title: 'Laporan', href: adminReports(), icon: FileBarChart },
-    { title: 'Pengaturan', href: adminSettings(), icon: Settings },
+    { title: 'Pengaturan Absensi', href: adminSettings(), icon: Settings },
+    accountNavItem,
 ];
 
 /** Main navigation items for the signed-in user, chosen by role. */
