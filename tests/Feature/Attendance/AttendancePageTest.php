@@ -15,7 +15,6 @@ class AttendancePageTest extends AttendanceTestCase
         parent::setUp();
 
         $this->withoutVite();
-        config(['inertia.testing.ensure_pages_exist' => false]);
     }
 
     public function test_guest_is_redirected_to_login(): void
